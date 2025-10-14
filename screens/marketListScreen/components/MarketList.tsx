@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { FlatList, RefreshControl } from "react-native";
 import { EnrichedMarket } from "../../../api/types";
 import { Header } from "./Header";
@@ -10,6 +11,8 @@ interface MarketListProps {
 }
 
 export const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
+  const router = useRouter();
+
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
@@ -20,7 +23,17 @@ export const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
       }
       ListHeaderComponent={<Header />}
       stickyHeaderIndices={[0]}
-      renderItem={({ item }) => <MarketRow item={item} onPress={() => {}} />}
+      renderItem={({ item }) => (
+        <MarketRow
+          item={item}
+          onPress={() =>
+            router.push({
+              pathname: "/market/[id]",
+              params: { id: item.tickerId },
+            })
+          }
+        />
+      )}
     />
   );
 };

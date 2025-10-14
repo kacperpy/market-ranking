@@ -22,6 +22,10 @@ export default function RootLayout() {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="market/[id]"
+            options={{ title: "Market Details" }}
+          />
         </Stack>
       </ThemeProvider>
     </QueryClientProvider>
