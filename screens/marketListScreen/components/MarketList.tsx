@@ -15,6 +15,7 @@ export const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
 
   return (
     <FlatList
+      testID="market-list"
       showsVerticalScrollIndicator={false}
       data={data}
       keyExtractor={(item) => item.tickerId}
