@@ -11,7 +11,7 @@ export default function useFetchMarketSummary() {
   const query = useQuery({
     queryKey: ["marketSummary"],
     queryFn: fetchMarketSummary,
-    refetchInterval: 30_000,
+    refetchInterval: 60_000,
   });
 
   return {
