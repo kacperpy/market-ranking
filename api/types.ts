@@ -28,3 +28,12 @@ export type EnrichedMarket = {
   spreadPct?: number | null;
   rag: "Green" | "Amber" | "Red";
 };
+
+export type RawMarketDepthItem = { quantity: string; price: string };
+export type MarketDepthResponse = {
+  timestamp: string;
+  bids: RawMarketDepthItem[];
+  asks: RawMarketDepthItem[];
+};
+export type MarketDepthItem = { price: number; quantity: number };
+export type MarketDepth = { bids: MarketDepthItem[]; asks: MarketDepthItem[] };
