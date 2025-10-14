@@ -9,7 +9,7 @@ import {
   normalizeDepth,
   priceRange,
   sumQuantity,
-} from "@/utils";
+} from "../../utils/utils";
 import DepthCard from "./components/DepthCard";
 import ErrorIndicator from "./components/ErrorIndicator";
 import Header from "./components/Header";
@@ -47,6 +47,7 @@ const MarketDetailsScreen = () => {
 
   return (
     <ScrollView
+      testID="market-details-scroll-view"
       contentContainerStyle={[globalStyles.backgroundWhite, styles.container]}
       refreshControl={
         <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />

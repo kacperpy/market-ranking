@@ -1,4 +1,4 @@
-import { prettyTicker } from "@/utils";
+import { prettyTicker } from "@/utils/utils";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { EnrichedMarket } from "../../../api/types";

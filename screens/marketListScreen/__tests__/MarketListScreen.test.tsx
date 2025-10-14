@@ -3,7 +3,7 @@ import useFetchMarketSummary from "@/api/hooks/useFetchMarketSummary";
 import { SortingProvider } from "@/context/SortingContext";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import React from "react";
-import MarketListScreen from "../screens/marketListScreen/MarketListScreen";
+import MarketListScreen from "../MarketListScreen";
 
 jest.mock("@/api/hooks/useFetchMarketPairs");
 jest.mock("@/api/hooks/useFetchMarketSummary");

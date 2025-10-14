@@ -7,7 +7,6 @@ interface InputProps {
   placeholder: string;
   value: string;
   onChangeText: (val: string) => void;
-  secureTextEntry?: boolean;
 }
 
 export const Input = ({
@@ -15,7 +14,6 @@ export const Input = ({
   placeholder,
   value,
   onChangeText,
-  secureTextEntry,
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -30,7 +28,6 @@ export const Input = ({
         onBlur={() => setIsFocused(false)}
         onChangeText={(val) => onChangeText(val)}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry && secureTextEntry}
       />
     </View>
   );

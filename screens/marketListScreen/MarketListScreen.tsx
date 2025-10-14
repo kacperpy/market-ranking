@@ -5,9 +5,13 @@ import useFetchMarketSummary from "@/api/hooks/useFetchMarketSummary";
 import globalStyles from "@/assets/globalStyles";
 import { useSorting } from "@/context/SortingContext";
 import { MarketList } from "@/screens/marketListScreen/components/MarketList";
-import { calculateSpreadPercentage, ragFromSpread, toNumber } from "@/utils";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { EnrichedMarket } from "../../api/types";
+import {
+  calculateSpreadPercentage,
+  ragFromSpread,
+  toNumber,
+} from "../../utils/utils";
 
 export default function MarketListScreen() {
   const pairs = useFetchMarketPairs();

@@ -1,4 +1,4 @@
-import { prettyTicker } from "@/utils";
+import { prettyTicker } from "@/utils/utils";
 import { Text, View } from "react-native";
 import styles from "../styles";
 
