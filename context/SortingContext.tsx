@@ -1,27 +1,32 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 type SortKey = "name" | "spread" | undefined;
-type SortDirection = "ascending" | "descending";
+type SortDirection = "ascending" | "descending" | undefined;
 
 interface SortingContextValue {
   sortKey: SortKey;
   sortDirection: SortDirection;
+  filterName: string;
   toggleSort: (key: SortKey) => void;
+  setFilterName: (name: string) => void;
   resetSort: () => void;
+  resetFilters: () => void;
 }
 
 const SortingContext = createContext<SortingContextValue | null>(null);
 
 export const SortingProvider = ({ children }: { children: ReactNode }) => {
   const [sortKey, setSortKey] = useState<SortKey>(undefined);
-  const [sortDirection, setSortDirection] =
-    useState<SortDirection>("ascending");
+  const [sortDirection, setSortDirection] = useState<SortDirection>(undefined);
+  const [filterName, setFilterName] = useState<string>("");
 
   const toggleSort = (key: SortKey) => {
     if (key === sortKey) {
-      setSortDirection((prev) =>
-        prev === "ascending" ? "descending" : "ascending"
-      );
+      setSortDirection((prev) => {
+        if (prev === "ascending") return "descending";
+        if (prev === "descending") return undefined;
+        return "ascending";
+      });
     } else {
       setSortKey(key);
       setSortDirection("ascending");
@@ -30,12 +35,25 @@ export const SortingProvider = ({ children }: { children: ReactNode }) => {
 
   const resetSort = () => {
     setSortKey(undefined);
-    setSortDirection("ascending");
+    setSortDirection(undefined);
+  };
+
+  const resetFilters = () => {
+    setFilterName("");
+    resetSort();
   };
 
   return (
     <SortingContext.Provider
-      value={{ sortKey, sortDirection, toggleSort, resetSort }}
+      value={{
+        sortKey,
+        sortDirection,
+        filterName,
+        toggleSort,
+        setFilterName,
+        resetSort,
+        resetFilters,
+      }}
     >
       {children}
     </SortingContext.Provider>

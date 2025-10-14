@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useDeferredValue, useMemo } from "react";
 
 import useFetchMarketPairs from "@/api/hooks/useFetchMarketPairs";
 import useFetchMarketSummary from "@/api/hooks/useFetchMarketSummary";
+import globalStyles from "@/assets/globalStyles";
 import { useSorting } from "@/context/SortingContext";
 import { MarketList } from "@/screens/marketListScreen/components/MarketList";
 import { calculateSpreadPercentage, ragFromSpread, toNumber } from "@/utils";
@@ -13,7 +14,9 @@ export default function MarketListScreen() {
   const summary = useFetchMarketSummary();
   const loading = pairs.isLoading || summary.isLoading;
 
-  const { sortKey, sortDirection, resetSort } = useSorting();
+  const { sortKey, sortDirection, resetSort, filterName } = useSorting();
+
+  const deferredFilterName = useDeferredValue(filterName);
 
   const onRefresh = () => {
     pairs.refetch();
@@ -48,28 +51,43 @@ export default function MarketListScreen() {
     });
   }, [pairs.data, summary.summary]);
 
+  const filteredData = useMemo(() => {
+    if (!deferredFilterName) return enrichedData;
+    const lower = deferredFilterName.toLowerCase();
+    return enrichedData.filter((item) =>
+      item.tickerId.toLowerCase().includes(lower)
+    );
+  }, [enrichedData, deferredFilterName]);
+
   const sortedData = useMemo(() => {
-    const sorted = [...enrichedData];
+    const sorted = [...filteredData];
 
     sorted.sort((a, b) => {
+      if (!sortKey || !sortDirection) return 0;
+
       if (sortKey === "name") {
         return sortDirection === "ascending"
           ? a.tickerId.localeCompare(b.tickerId)
           : b.tickerId.localeCompare(a.tickerId);
       }
+
       if (sortKey === "spread") {
         const aVal = a.spreadPct ?? 0;
         const bVal = b.spreadPct ?? 0;
         return sortDirection === "ascending" ? aVal - bVal : bVal - aVal;
       }
+
       return 0;
     });
 
     return sorted;
-  }, [enrichedData, sortKey, sortDirection]);
+  }, [filteredData, sortKey, sortDirection]);
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]}>
+    <SafeAreaView
+      edges={["top", "left", "right"]}
+      style={globalStyles.backgroundWhite}
+    >
       <MarketList data={sortedData} loading={loading} onRefresh={onRefresh} />
     </SafeAreaView>
   );

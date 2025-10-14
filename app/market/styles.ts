@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   timestamp: { color: TEXT_MUTED, fontSize: 12, textAlign: "right" },
+  inputContainer: {
+    padding: 12,
+  },
 });
 
 export default styles;

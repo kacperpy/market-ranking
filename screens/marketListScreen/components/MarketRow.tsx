@@ -1,7 +1,8 @@
 import { prettyTicker } from "@/utils";
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { EnrichedMarket } from "../../../api/types";
+import styles from "../styles";
 
 type Props = {
   item: EnrichedMarket;
@@ -14,13 +15,13 @@ const ragColor = (rag: EnrichedMarket["rag"]) =>
 export default function MarketRow({ item, onPress }: Props) {
   return (
     <Pressable onPress={onPress} style={styles.row}>
-      <View style={styles.left}>
+      <View>
         <Text style={styles.ticker}>{prettyTicker(item.tickerId)}</Text>
         <Text style={styles.sub}>
           BID: {item.highestBid ?? "-"} | ASK: {item.lowestAsk ?? "-"}
         </Text>
       </View>
-      <View style={styles.right}>
+      <View style={styles.rightStats}>
         <Text style={styles.spread}>
           {item.spreadPct === null ? "-" : `${item.spreadPct?.toFixed(2)}%`}
         </Text>
@@ -29,22 +30,3 @@ export default function MarketRow({ item, onPress }: Props) {
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  row: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#e5e7eb",
-    backgroundColor: "white",
-  },
-  left: { flexShrink: 1 },
-  ticker: { fontSize: 16, fontWeight: "600" },
-  sub: { color: "#6b7280", marginTop: 4 },
-  right: { flexDirection: "row", alignItems: "center", gap: 8 },
-  spread: { fontVariant: ["tabular-nums"], fontSize: 15 },
-  dot: { width: 12, height: 12, borderRadius: 6 },
-});
