@@ -13,11 +13,12 @@ export default function MarketListScreen() {
   const summary = useFetchMarketSummary();
   const loading = pairs.isLoading || summary.isLoading;
 
-  const { sortKey, sortDirection } = useSorting();
+  const { sortKey, sortDirection, resetSort } = useSorting();
 
   const onRefresh = () => {
     pairs.refetch();
     summary.refetch();
+    resetSort();
   };
 
   const enrichedData: EnrichedMarket[] = useMemo(() => {

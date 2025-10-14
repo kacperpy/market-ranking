@@ -7,6 +7,7 @@ interface SortingContextValue {
   sortKey: SortKey;
   sortDirection: SortDirection;
   toggleSort: (key: SortKey) => void;
+  resetSort: () => void;
 }
 
 const SortingContext = createContext<SortingContextValue | null>(null);
@@ -27,8 +28,15 @@ export const SortingProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const resetSort = () => {
+    setSortKey(undefined);
+    setSortDirection("ascending");
+  };
+
   return (
-    <SortingContext.Provider value={{ sortKey, sortDirection, toggleSort }}>
+    <SortingContext.Provider
+      value={{ sortKey, sortDirection, toggleSort, resetSort }}
+    >
       {children}
     </SortingContext.Provider>
   );
