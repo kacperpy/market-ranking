@@ -1,7 +1,7 @@
 import { FlatList, RefreshControl } from "react-native";
-import { EnrichedMarket } from "../../api/types";
-import { Header } from "./components/Header";
-import MarketRow from "./components/MarketRow";
+import { EnrichedMarket } from "../../../api/types";
+import { Header } from "./Header";
+import MarketRow from "./MarketRow";
 
 interface MarketListProps {
   data: EnrichedMarket[];
