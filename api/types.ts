@@ -20,3 +20,11 @@ export type MarketSummaryResponse = {
   timestamp: string;
   summary: MarketSummaryItem[];
 };
+
+export type EnrichedMarket = {
+  tickerId: string;
+  highestBid?: number | null;
+  lowestAsk?: number | null;
+  spreadPct?: number | null;
+  rag: "Green" | "Amber" | "Red";
+};
