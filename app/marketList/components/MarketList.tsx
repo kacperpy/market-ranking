@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { FlatList, RefreshControl } from "react-native";
 import { EnrichedMarket } from "../../../api/types";
-import { Header } from "./Header";
+import Header from "./Header";
 import MarketRow from "./MarketRow";
 
 interface MarketListProps {
@@ -10,7 +10,7 @@ interface MarketListProps {
   onRefresh: () => void;
 }
 
-export const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
+const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
   const router = useRouter();
 
   return (
@@ -38,3 +38,5 @@ export const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
     />
   );
 };
+
+export default MarketList;

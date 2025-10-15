@@ -1,6 +1,11 @@
 import useFetchMarketDepth from "@/api/hooks/useFetchMarketDepth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen, waitFor } from "@testing-library/react-native";
+import {
+    cleanup,
+    render,
+    screen,
+    waitFor,
+} from "@testing-library/react-native";
 import { useLocalSearchParams } from "expo-router";
 import MarketDetailsScreen from "../[id]";
 
@@ -9,9 +14,15 @@ jest.mock("expo-router", () => ({
   useLocalSearchParams: jest.fn(),
 }));
 
-const queryClient = new QueryClient();
-
 describe("MarketDetailsScreen Integration Test", () => {
+  const mockQueryClient = new QueryClient();
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    mockQueryClient.clear();
+    cleanup();
+  });
+
   it("fetches and displays market depth data", async () => {
     const mockId = "BTC_USD";
     (useLocalSearchParams as jest.Mock).mockReturnValue({ id: mockId });
@@ -31,7 +42,7 @@ describe("MarketDetailsScreen Integration Test", () => {
     });
 
     render(
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={mockQueryClient}>
         <MarketDetailsScreen />
       </QueryClientProvider>
     );

@@ -4,7 +4,7 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import styles from "../styles";
 
-export const Header = () => {
+const Header = () => {
   const { sortKey, sortDirection, toggleSort, filterName, setFilterName } =
     useSorting();
 
@@ -47,3 +47,5 @@ export const Header = () => {
     </View>
   );
 };
+
+export default Header;

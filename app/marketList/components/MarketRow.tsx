@@ -12,7 +12,7 @@ type Props = {
 const ragColor = (rag: EnrichedMarket["rag"]) =>
   rag === "Green" ? "#16a34a" : rag === "Amber" ? "#f59e0b" : "#ef4444";
 
-export default function MarketRow({ item, onPress }: Props) {
+const MarketRow = ({ item, onPress }: Props) => {
   return (
     <Pressable onPress={onPress} style={styles.row}>
       <View>
@@ -29,4 +29,6 @@ export default function MarketRow({ item, onPress }: Props) {
       </View>
     </Pressable>
   );
-}
+};
+
+export default MarketRow;

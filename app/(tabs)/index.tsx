@@ -1,6 +1,6 @@
 import { SortingProvider } from "@/context/SortingContext";
 import React from "react";
-import MarketListScreen from "../../screens/marketListScreen/MarketListScreen";
+import MarketListScreen from "../marketList/MarketListScreen";
 
 export default function MarketListScreenWrapper() {
   return (

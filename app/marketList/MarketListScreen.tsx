@@ -4,7 +4,6 @@ import useFetchMarketPairs from "@/api/hooks/useFetchMarketPairs";
 import useFetchMarketSummary from "@/api/hooks/useFetchMarketSummary";
 import globalStyles from "@/assets/globalStyles";
 import { useSorting } from "@/context/SortingContext";
-import { MarketList } from "@/screens/marketListScreen/components/MarketList";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { EnrichedMarket } from "../../api/types";
@@ -13,6 +12,7 @@ import {
   ragFromSpread,
   toNumber,
 } from "../../utils/utils";
+import MarketList from "./components/MarketList";
 
 export default function MarketListScreen() {
   const pairs = useFetchMarketPairs();
