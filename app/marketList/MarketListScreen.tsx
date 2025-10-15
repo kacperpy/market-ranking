@@ -1,3 +1,10 @@
+//Since there was no backend-side pagination (or at least i was not aware of it)
+//..i did not implement lazy loaded pagination functionality.
+//Normally i would fetch the paginated data and append the displayed list with it.
+//Then i would implement a paginate() function, which updates the local list state. I would trigger it on the first render for initial data load.
+//Then i would set the FlatList's onEndReachedThreshold prop to something like {0.5}.
+//Then i would implement a handleOnEndReached function and assign it to the FlatList's onEndReached prop.
+
 import React, { useDeferredValue, useMemo } from "react";
 
 import useFetchMarketPairs from "@/api/hooks/useFetchMarketPairs";

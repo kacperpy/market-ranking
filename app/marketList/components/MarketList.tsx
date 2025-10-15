@@ -24,6 +24,16 @@ const MarketList = ({ data, loading, onRefresh }: MarketListProps) => {
       }
       ListHeaderComponent={<Header />}
       stickyHeaderIndices={[0]}
+      initialNumToRender={20}
+      maxToRenderPerBatch={10}
+      updateCellsBatchingPeriod={50}
+      windowSize={20}
+      removeClippedSubviews
+      getItemLayout={(data, index) => ({
+        length: 64,
+        offset: 64 * index,
+        index,
+      })}
       renderItem={({ item }) => (
         <MarketRow
           item={item}

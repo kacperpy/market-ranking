@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#222",
   },
+  textBig: {
+    fontWeight: "700",
+    fontSize: 16,
+    color: "#222",
+  },
   left: {
     textAlign: "left",
   },
@@ -35,7 +40,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   row: {
-    paddingVertical: 12,
+    height: 64,
     paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "center",
@@ -45,9 +50,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   ticker: { fontSize: 16, fontWeight: "600" },
-  sub: { color: "#6b7280", marginTop: 4 },
+  sub: { color: "#6b7280", marginTop: 4, maxWidth: 300 },
   rightStats: { flexDirection: "row", alignItems: "center", gap: 8 },
-  spread: { fontVariant: ["tabular-nums"], fontSize: 15 },
+  spread: { fontVariant: ["tabular-nums"], fontSize: 15, paddingRight: 28 },
   dot: { width: 12, height: 12, borderRadius: 6 },
 });
 

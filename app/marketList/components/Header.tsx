@@ -29,7 +29,7 @@ const Header = () => {
           onPress={() => toggleSort("name")}
           style={{ flex: 1 }}
         >
-          <Text style={[styles.text, styles.left]}>
+          <Text style={[styles.textBig, styles.left]}>
             Market{getIndicator("name")}
           </Text>
         </TouchableOpacity>
@@ -44,6 +44,7 @@ const Header = () => {
         </TouchableOpacity>
         <Text style={[styles.text, styles.right]}>RAG</Text>
       </View>
+      <Text style={[styles.text, styles.left, {paddingLeft: 16}]}>highest bid / lowest ask</Text>
     </View>
   );
 };
