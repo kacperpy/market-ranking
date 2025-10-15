@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { RefreshControl, ScrollView } from "react-native";
+import { RefreshControl, ScrollView, StatusBar } from "react-native";
 
 import useFetchMarketDepth from "@/api/hooks/useFetchMarketDepth";
 import globalStyles from "@/assets/globalStyles";
@@ -48,11 +48,13 @@ const MarketDetailsScreen = () => {
   return (
     <ScrollView
       testID="market-details-scroll-view"
+      style={globalStyles.backgroundWhite}
       contentContainerStyle={[globalStyles.backgroundWhite, styles.container]}
       refreshControl={
         <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
       }
     >
+      <StatusBar barStyle="dark-content" />
       <Header id={id} />
 
       {isLoading && <LoadingIndicator />}

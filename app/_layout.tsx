@@ -7,6 +7,7 @@ import { Stack } from "expo-router";
 import "react-native-reanimated";
 
 import { queryClient } from "@/api/client";
+import globalStyles from "@/assets/globalStyles";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { QueryClientProvider } from "@tanstack/react-query";
 
@@ -27,7 +28,11 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="market/[id]"
-            options={{ title: "Market Details" }}
+            options={{
+              title: "Market Details",
+              headerStyle: [globalStyles.backgroundWhite],
+              headerTintColor: "black",
+            }}
           />
         </Stack>
       </ThemeProvider>

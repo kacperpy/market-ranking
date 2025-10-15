@@ -5,6 +5,7 @@ import useFetchMarketSummary from "@/api/hooks/useFetchMarketSummary";
 import globalStyles from "@/assets/globalStyles";
 import { useSorting } from "@/context/SortingContext";
 import { MarketList } from "@/screens/marketListScreen/components/MarketList";
+import { StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { EnrichedMarket } from "../../api/types";
 import {
@@ -92,6 +93,7 @@ export default function MarketListScreen() {
       edges={["top", "left", "right"]}
       style={globalStyles.backgroundWhite}
     >
+      <StatusBar barStyle="dark-content" />
       <MarketList data={sortedData} loading={loading} onRefresh={onRefresh} />
     </SafeAreaView>
   );
