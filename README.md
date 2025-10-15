@@ -11,7 +11,10 @@ To run this project, follow these steps:
    ```bash
    npx expo start
    ```
-   If you encounter issues starting the server due to firewall settings, try using the tunnel option by pressing `t` in the terminal after running the above command.
+   If you encounter issues starting the server due to firewall settings, try using the tunnel option by pressing `t` in the terminal after running the above command, or running the following command:
+      ```bash
+   npx expo start --tunnel
+   ```
 
 3. **Open the App**: After starting the server, you can open the app in your preferred environment (iOS, Android, or web). 
 
